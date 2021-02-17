@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText password;
     private Button login;
     private TextView message;
+    private TextView signup;
     private String sampleuid = "Admin";
     private String sampass = "12345";
 
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         password = (EditText)findViewById(R.id.epass);
         login = (Button)findViewById(R.id.but);
         message =(TextView)findViewById(R.id.emsg);
+        signup = (TextView)findViewById(R.id.esig);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,6 +38,12 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else
                 validate(inputname ,inputpassword);
+            }
+        });
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,SignUp.class));
             }
         });
     }
