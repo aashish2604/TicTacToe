@@ -64,17 +64,28 @@
         android:layout_height="40dp"
         android:ems="10"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="152dp"
-        tools:layout_editor_absoluteY="131dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.433"
+        app:layout_constraintStart_toEndOf="@+id/tvuname"
+        app:layout_constraintTop_toBottomOf="@+id/textView7"
+        app:layout_constraintVertical_bias="0.065"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/eemail"
         android:layout_width="230dp"
         android:layout_height="40dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="152dp"
-        tools:layout_editor_absoluteY="184dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.347"
+        app:layout_constraintStart_toEndOf="@+id/tvemail"
+        app:layout_constraintTop_toBottomOf="@+id/euser"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/epassword"
@@ -82,8 +93,13 @@
         android:layout_height="40dp"
         android:ems="10"
         android:inputType="textPassword"
-        tools:layout_editor_absoluteX="152dp"
-        tools:layout_editor_absoluteY="239dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.433"
+        app:layout_constraintStart_toEndOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/eemail"
+        app:layout_constraintVertical_bias="0.036"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/ecpassword"
@@ -91,8 +107,13 @@
         android:layout_height="36dp"
         android:ems="10"
         android:inputType="textPassword"
-        tools:layout_editor_absoluteX="196dp"
-        tools:layout_editor_absoluteY="297dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/epassword"
+        app:layout_constraintVertical_bias="0.038"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView7"
@@ -103,24 +124,39 @@
         android:textColor="#0E0A0A"
         android:textSize="36sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="81dp"
-        tools:layout_editor_absoluteY="35dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.049"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/butt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Regsiter"
-        tools:layout_editor_absoluteX="151dp"
-        tools:layout_editor_absoluteY="415dp" />
+        app:backgroundTint="#FDD14B"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.527"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ecpassword"
+        app:layout_constraintVertical_bias="0.196"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="125dp"
         android:layout_height="19dp"
         android:text="Already registered? "
-        tools:layout_editor_absoluteX="228dp"
-        tools:layout_editor_absoluteY="492dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.797"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/butt"
+        app:layout_constraintVertical_bias="0.166"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/esign"
@@ -128,6 +164,11 @@
         android:layout_height="wrap_content"
         android:text="Sign In"
         android:textColor="#065B9E"
-        tools:layout_editor_absoluteX="353dp"
-        tools:layout_editor_absoluteY="492dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/butt"
+        app:layout_constraintVertical_bias="0.166"
+        tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>
