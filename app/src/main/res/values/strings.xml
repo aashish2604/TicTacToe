@@ -2,4 +2,8 @@
     <string name="app_name">TicTacToe</string>
     <string name="username">Username</string>
     <string name="textview">TextView</string>
+    <string name="title_activity_main_screen">MainScreen</string>
+    <string name="tab_text_1">Requests</string>
+    <string name="tab_text_2">Users</string>
+    <string name="tab_text_3">Blogs</string>
 </resources>
