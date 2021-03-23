@@ -15,12 +15,15 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUp extends AppCompatActivity {
     private EditText username;
     private EditText email;
     private EditText password;
     private EditText cpassword;
+    private EditText phonenum;
     private Button button;
     private TextView sign;
     private FirebaseAuth firebaseAuth;
@@ -45,6 +48,15 @@ public class SignUp extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()) {
                                 Toast.makeText(SignUp.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+                                    String uname= username.getText().toString().trim();
+                                    String em= email.getText().toString().trim();
+                                    String p=phonenum.getText().toString().trim();
+                                    dataholder obj= new dataholder(uname,em);
+                                    FirebaseDatabase db=FirebaseDatabase.getInstance();
+                                    DatabaseReference node= db.getReference("Gamers");
+                                    node.child(p).setValue(obj);
+                                    username.setText("");
+                                    email.setText("");
                                 startActivity(new Intent(SignUp.this ,MainActivity.class));
                             }
                             else
@@ -70,6 +82,7 @@ public class SignUp extends AppCompatActivity {
         cpassword = (EditText)findViewById(R.id.ecpassword);
         button = (Button)findViewById(R.id.butt);
         sign = (TextView)findViewById(R.id.esign);
+        phonenum =(EditText)findViewById(R.id.ephonenum);
     }
     private Boolean validate(){
         Boolean r = false;
@@ -85,5 +98,7 @@ public class SignUp extends AppCompatActivity {
         else
             Toast.makeText(SignUp.this, "Password and confirm password should be same", Toast.LENGTH_SHORT).show();
         return r;
+
     }
+
 }

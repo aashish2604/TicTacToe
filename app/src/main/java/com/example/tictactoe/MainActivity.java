@@ -59,8 +59,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     private void validate(String uid,String pass){
-        progressDialog.setMessage("Take a breadth !");
+        progressDialog.setMessage("Take a breath !");
         progressDialog.show();
+        message.setVisibility(View.INVISIBLE);
         firebaseAuth.signInWithEmailAndPassword(uid,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -70,7 +71,9 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(MainActivity.this,MainScreen.class));
                 }
                 else{
+                    progressDialog.dismiss();
                     Toast.makeText(MainActivity.this,"Login Failed",Toast.LENGTH_SHORT).show();
+                    message.setVisibility(View.VISIBLE);
                 }
             }
         });
