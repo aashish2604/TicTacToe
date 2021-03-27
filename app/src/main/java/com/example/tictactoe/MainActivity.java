@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView signup;
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
+    /*Class for the login activity which also includes the signup text button*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

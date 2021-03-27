@@ -5,15 +5,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import static android.widget.Toast.LENGTH_LONG;
 
 public class adapter extends FirebaseRecyclerAdapter<model,adapter.myviewholder>
 {
+
+    public Button request;
+    private FirebaseDatabase firebaseDatabase;
 
     /**
      * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
@@ -41,12 +50,31 @@ public class adapter extends FirebaseRecyclerAdapter<model,adapter.myviewholder>
     public class myviewholder extends RecyclerView.ViewHolder
     {
         TextView unamesrd;
-        Button request;
 
         public myviewholder(@NonNull View itemView) {
             super(itemView);
             unamesrd=itemView.findViewById(R.id.unamesrd);
             request=itemView.findViewById(R.id.request);
+            request.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String selectedUser= FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    String user=sendRequest();
+                    if(user.equals(selectedUser))
+                    {
+
+                    }
+                    else
+                    {
+
+                    }
+                }
+
+            });
         }
+    }
+    public String sendRequest(){
+        String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        return currentuser;
     }
 }

@@ -23,7 +23,6 @@ public class SignUp extends AppCompatActivity {
     private EditText email;
     private EditText password;
     private EditText cpassword;
-    private EditText phonenum;
     private Button button;
     private TextView sign;
     private FirebaseAuth firebaseAuth;
@@ -50,11 +49,12 @@ public class SignUp extends AppCompatActivity {
                                 Toast.makeText(SignUp.this, "Registration Successful", Toast.LENGTH_SHORT).show();
                                     String uname= username.getText().toString().trim();
                                     String em= email.getText().toString().trim();
-                                    String p=phonenum.getText().toString().trim();
+                                //For creating a unique user id for the registered users
                                     dataholder obj= new dataholder(uname,em);
-                                    FirebaseDatabase db=FirebaseDatabase.getInstance();
-                                    DatabaseReference node= db.getReference("Gamers");
-                                    node.child(p).setValue(obj);
+                                DatabaseReference myRef;
+                                myRef = FirebaseDatabase.getInstance().getReference().child("Gamers");
+                                String uid = FirebaseAuth.getInstance().getUid();
+                                myRef.child(uid).setValue(obj);
                                     username.setText("");
                                     email.setText("");
                                 startActivity(new Intent(SignUp.this ,MainActivity.class));
@@ -76,15 +76,16 @@ public class SignUp extends AppCompatActivity {
         });
     }
     private void setupUI(){
+        //For entering getting the value of the inputs
         username = (EditText)findViewById(R.id.euser);
         email = (EditText)findViewById(R.id.eemail);
         password = (EditText)findViewById(R.id.epassword);
         cpassword = (EditText)findViewById(R.id.ecpassword);
         button = (Button)findViewById(R.id.butt);
         sign = (TextView)findViewById(R.id.esign);
-        phonenum =(EditText)findViewById(R.id.ephonenum);
     }
     private Boolean validate(){
+        //For the checking the if the inputs of the fields are valid or nor
         Boolean r = false;
         String u = username.getText().toString();
         String e = email.getText().toString();
