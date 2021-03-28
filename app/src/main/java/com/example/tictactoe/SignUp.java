@@ -1,8 +1,5 @@
 package com.example.tictactoe;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +7,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -85,7 +85,7 @@ public class SignUp extends AppCompatActivity {
         sign = (TextView)findViewById(R.id.esign);
     }
     private Boolean validate(){
-        //For the checking the if the inputs of the fields are valid or nor
+        //For checking if the inputs of the fields are valid or not
         Boolean r = false;
         String u = username.getText().toString();
         String e = email.getText().toString();
