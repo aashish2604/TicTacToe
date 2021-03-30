@@ -57,7 +57,8 @@ public class SignUp extends AppCompatActivity {
                                 myRef.child(uid).setValue(obj);
                                     username.setText("");
                                     email.setText("");
-                                startActivity(new Intent(SignUp.this ,MainActivity.class));
+                                Intent setupIntent= new Intent(SignUp.this,MainScreen.class);
+                                startActivity(setupIntent);
                             }
                             else
                                 Toast.makeText(SignUp.this,"Registration Unsuccessful",Toast.LENGTH_SHORT).show();
