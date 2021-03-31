@@ -22,8 +22,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -40,11 +43,11 @@ public class NewBlogPost extends AppCompatActivity {
     private Uri ImageUri;
     private String Description;
     private StorageReference PostImagesReference;
-    private String saveCurrentDate;
+    private String saveCurrentDate, uname;
     private String saveCurrentTime;
     private String postRandomName, current_user_id;
     private String downloadUrl;
-    private DatabaseReference userRef, postRef;
+    private DatabaseReference userRef, postRef, username;
     private FirebaseAuth mAuth;
     private ProgressDialog loading;
     private FirebaseDatabase db;
@@ -158,13 +161,28 @@ public class NewBlogPost extends AppCompatActivity {
     }
 
     private void savingPostInformationToDatabase()
-    {   String uid = FirebaseAuth.getInstance().getUid();
-        String desc = newPostDesc.getText().toString().trim();
-        BlogDataHolder obj= new BlogDataHolder(uid,saveCurrentDate,saveCurrentTime,desc,downloadUrl);
-        DatabaseReference myRef;
-        myRef = FirebaseDatabase.getInstance().getReference().child("Posts");
-        myRef.child(postRandomName + current_user_id).setValue(obj);
-        startActivity(new Intent(NewBlogPost.this,SecondActivity.class));
+    {
+        String uid = FirebaseAuth.getInstance().getUid();
+
+        username = FirebaseDatabase.getInstance().getReference().child("Gamers").child(uid);
+        username.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                uname = snapshot.child("username").getValue().toString().trim();
+                String desc = newPostDesc.getText().toString().trim();
+                BlogDataHolder obj= new BlogDataHolder(current_user_id,saveCurrentDate,saveCurrentTime,desc,downloadUrl,uname);
+                DatabaseReference myRef;
+                myRef = FirebaseDatabase.getInstance().getReference().child("Posts");
+                myRef.child(postRandomName + current_user_id).setValue(obj);
+                startActivity(new Intent(NewBlogPost.this,SecondActivity.class));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void opengallery() {//Method to allow user choose a pic from his gallery on clicking the image

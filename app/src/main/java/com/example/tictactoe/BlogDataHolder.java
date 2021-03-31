@@ -6,6 +6,7 @@ public class BlogDataHolder {
     String time;
     String description;
     String post_image;
+    String username;
 
     public String getUid() {
         return uid;
@@ -47,12 +48,21 @@ public class BlogDataHolder {
         this.post_image = post_image;
     }
 
-    public BlogDataHolder(String uid, String date, String time, String description, String post_image) {
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public BlogDataHolder(String uid, String date, String time, String description, String post_image, String username) {
         this.uid = uid;
         this.date = date;
         this.time = time;
         this.description = description;
         this.post_image = post_image;
+        this.username = username;
     }
 
     public BlogDataHolder() {

@@ -1,10 +1,7 @@
 package com.example.tictactoe;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,14 +11,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
@@ -36,8 +32,9 @@ public class SetupActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private DatabaseReference UsersRef;
     private String currentUid;
-    private StorageReference storageReference;
+    private StorageReference storageReference , UsersProfileImageRef;
     private ProgressBar setupProgress;
+    private final static int Gallery_Pick = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +42,9 @@ public class SetupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_setup);
 
         firebaseAuth = FirebaseAuth.getInstance();
-
+        currentUid  = firebaseAuth.getCurrentUser().getUid();
         UsersRef = FirebaseDatabase.getInstance().getReference().child("Gamers").child(currentUid);
+        UsersProfileImageRef = FirebaseStorage.getInstance().getReference().child("profile images");
 
         setupImage = findViewById(R.id.upload_profile_pic);
         setupBtn = findViewById(R.id.upload_profile_image);
@@ -68,7 +66,7 @@ public class SetupActivity extends AppCompatActivity {
                         else
                         {
                             String error = task.getException().getMessage();
-                            Toast.makeText(SetupActivity.this, "Error : ", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SetupActivity.this, "Error : " + error, Toast.LENGTH_SHORT).show();
                         }
 
                         setupProgress.setVisibility(View.INVISIBLE);
@@ -80,23 +78,12 @@ public class SetupActivity extends AppCompatActivity {
         setupImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    //Adding permissions of allowing the app to access the storage of that person
-                    if (ContextCompat.checkSelfPermission(SetupActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
-                        Toast.makeText(SetupActivity.this, "Permission Denied", Toast.LENGTH_SHORT).show();
-                        ActivityCompat.requestPermissions(SetupActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},1);
-                    } else{
+                Intent galleryIntent = new Intent();
+                galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
+                galleryIntent.setType("images/*");
+                startActivityForResult(galleryIntent,Gallery_Pick);
 
-                        CropImage.activity()
-                                .setGuidelines(CropImageView.Guidelines.ON)
-                                .setAspectRatio(1,1)
-                                .start(SetupActivity.this);
-
-                    }
-
-
-                }
             }
         });
     }
@@ -105,15 +92,21 @@ public class SetupActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+        if(requestCode==Gallery_Pick && resultCode==RESULT_OK && data!=null){
+
+            Uri ImageUri = data.getData();
+            CropImage.activity()
+                    .setGuidelines(CropImageView.Guidelines.ON)
+                    .setAspectRatio(1,1)
+                    .start(this);
+
+            }
+        if(requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE)
+        {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            if (resultCode == RESULT_OK) {
+            if(requestCode == RESULT_OK)
+            {
 
-                mainImageURI = result.getUri();
-                setupImage.setImageURI(mainImageURI);
-
-            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                Exception error = result.getError();
             }
         }
 
