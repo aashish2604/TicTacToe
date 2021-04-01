@@ -2,6 +2,7 @@ package com.example.tictactoe;
 
 public class model
 {
+    //model class for Fragment2
     String email,username;
 
     public model() {
