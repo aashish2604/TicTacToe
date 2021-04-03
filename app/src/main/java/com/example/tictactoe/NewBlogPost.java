@@ -175,7 +175,7 @@ public class NewBlogPost extends AppCompatActivity {
                 DatabaseReference myRef;
                 myRef = FirebaseDatabase.getInstance().getReference().child("Posts");
                 myRef.child(postRandomName + current_user_id).setValue(obj);
-                startActivity(new Intent(NewBlogPost.this,SecondActivity.class));
+                startActivity(new Intent(NewBlogPost.this,MainScreen.class));
             }
 
             @Override
