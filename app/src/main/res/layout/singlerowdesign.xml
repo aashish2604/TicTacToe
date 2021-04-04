@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="10dp"
-    android:elevation="8dp"
+    android:elevation="10dp"
     app:cardUseCompatPadding="true">
 
     <RelativeLayout
@@ -14,16 +14,16 @@
 
         <TextView
             android:id="@+id/unamesrd"
-            android:layout_width="224dp"
-            android:layout_height="45dp"
+            android:layout_width="260dp"
+            android:layout_height="49dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="14dp"
+            android:layout_marginStart="0dp"
             android:layout_marginTop="18dp"
-            android:layout_marginEnd="149dp"
-            android:layout_marginBottom="13dp"
+            android:layout_marginEnd="127dp"
+            android:layout_marginBottom="9dp"
             android:text="Sample text"
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -45,6 +45,19 @@
             android:layout_marginBottom="11dp"
             android:text="Request"
             app:backgroundTint="#0927E8" />
+
+        <TextView
+            android:id="@+id/current_uid"
+            android:layout_width="80dp"
+            android:layout_height="20dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="323dp"
+            android:visibility="invisible"
+            android:text="TextView" />
+
+
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

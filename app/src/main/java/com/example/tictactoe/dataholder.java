@@ -3,10 +3,14 @@ package com.example.tictactoe;
 public class dataholder {
     String username;
     String email;
+    String uid;
 
-    public dataholder(String username, String email) {
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
         this.username = username;
-        this.email = email;
     }
 
     public String getEmail() {
@@ -17,11 +21,21 @@ public class dataholder {
         this.email = email;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUid() {
+        return uid;
     }
 
-    public void setUsername(String username) {
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public dataholder(String username, String email, String uid) {
         this.username = username;
+        this.email = email;
+        this.uid = uid;
+    }
+
+    public dataholder() {
     }
 }
+

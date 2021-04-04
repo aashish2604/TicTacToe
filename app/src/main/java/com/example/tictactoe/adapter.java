@@ -22,7 +22,7 @@ public class adapter extends FirebaseRecyclerAdapter<model,adapter.myviewholder>
     //adapter class for the recycler view of the users in Fragment2
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
-    private String recieverUid , senderUid;
+    private String senderUid, ruid;
 
 
     /**
@@ -38,7 +38,7 @@ public class adapter extends FirebaseRecyclerAdapter<model,adapter.myviewholder>
     @Override
     protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull model model) {
     holder.unamesrd.setText(model.getUsername());
-    recieverUid = getRef(position).getKey();
+    holder.recieverUid.setText(model.getUid());
 
     }
 
@@ -50,28 +50,37 @@ public class adapter extends FirebaseRecyclerAdapter<model,adapter.myviewholder>
         return new myviewholder(view);
     }
 
+
     public class myviewholder extends RecyclerView.ViewHolder
     {
         TextView unamesrd;
         Button request;
+        TextView recieverUid;
+
 
         public myviewholder(@NonNull View itemView) {
             super(itemView);
             unamesrd=itemView.findViewById(R.id.unamesrd);
+            recieverUid=(TextView) itemView.findViewById(R.id.current_uid);
             request=itemView.findViewById(R.id.request);
+
+            ruid = recieverUid.getText().toString();
+
             request.setOnClickListener(new View.OnClickListener() {
+
                 @Override
+
                 public void onClick(View v) {
 
-                    if(senderUid.equals(recieverUid))
+                    if(senderUid.equals(ruid))
                     {
                         Toast.makeText(v.getContext(), "You cannot send play request to yourself",Toast.LENGTH_SHORT).show();
-                        Log.d("Demo","Id of receiver is " + recieverUid + "Id of the sender is " + senderUid);
+                        Log.d("Demo","Id of receiver is " + ruid + "Id of the sender is " + senderUid);
                     }
                     else
                     {
                         Toast.makeText(v.getContext(), "You can send request",Toast.LENGTH_SHORT).show();
-                        Log.d("Demo","Id of receiver is" + recieverUid + "Id of the sender is" + senderUid);
+                        Log.d("Demo","Id of receiver is " + ruid + "Id of the sender is " + senderUid);
                     }
                 }
 
@@ -80,4 +89,4 @@ public class adapter extends FirebaseRecyclerAdapter<model,adapter.myviewholder>
     }
 }
 /* After clicking the button adjacent to the name of a particular registered users.
- I should be getting the uid of that user in the recieverUid but I am getting the userID of the user logged in */
+ I should be getting the uid of that particular user in the ruid but i am getting "TextViewId" instead of it */

@@ -49,11 +49,11 @@ public class SignUp extends AppCompatActivity {
                                 Toast.makeText(SignUp.this, "Registration Successful", Toast.LENGTH_SHORT).show();
                                     String uname= username.getText().toString().trim();
                                     String em= email.getText().toString().trim();
+                                String uid = FirebaseAuth.getInstance().getUid();
                                 //For creating a unique user id for the registered users
-                                    dataholder obj= new dataholder(uname,em);
+                                    dataholder obj= new dataholder(uname,em,uid);
                                 DatabaseReference myRef;
                                 myRef = FirebaseDatabase.getInstance().getReference().child("Gamers");
-                                String uid = FirebaseAuth.getInstance().getUid();
                                 myRef.child(uid).setValue(obj);
                                     username.setText("");
                                     email.setText("");

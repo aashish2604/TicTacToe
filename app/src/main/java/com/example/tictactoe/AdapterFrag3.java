@@ -30,12 +30,11 @@ public class AdapterFrag3 extends FirebaseRecyclerAdapter<Frag3Module,AdapterFra
 
     @Override
     protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull Frag3Module model) {
-        Frag3Module ob  = new Frag3Module();
-        holder.post_user_name.setText(ob.getUsername());
-        holder.post_description.setText(ob.getDescription());
-        holder.post_date.setText(ob.getDate());
-        holder.post_time.setText(ob.getTime());
-        Glide.with(holder.post_image.getContext()).load(ob.getPost_image()).into(holder.post_image);
+        holder.post_user_name.setText(model.getUsername());
+        holder.post_description.setText(model.getDescription());
+        holder.post_date.setText(model.getDate());
+        holder.post_time.setText(model.getTime());
+        Glide.with(holder.post_image.getContext()).load(model.getPost_image()).into(holder.post_image);
     }
 
     @NonNull
