@@ -14,15 +14,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class adapter extends FirebaseRecyclerAdapter<model,adapter.myviewholder>
 {
     //adapter class for the recycler view of the users in Fragment2
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
-    private String senderUid, ruid;
+    private String senderUid;
+    private String senderUname;
 
 
     /**
@@ -39,8 +43,51 @@ public class adapter extends FirebaseRecyclerAdapter<model,adapter.myviewholder>
     protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull model model) {
     holder.unamesrd.setText(model.getUsername());
     holder.recieverUid.setText(model.getUid());
+    String ruid = holder.recieverUid.getText().toString();
+    String recieverUsername = holder.unamesrd.getText().toString();
 
+        holder.request.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+
+            public void onClick(View v) {
+
+                if(senderUid.equals(ruid))
+                {
+                    Toast.makeText(v.getContext(), "You cannot send play request to yourself",Toast.LENGTH_SHORT).show();
+                    Log.d("Demo","Id of receiver is " + ruid + "Id of the sender is " + senderUid);
+
+                }
+                else
+                {
+                    final String[] buttonState = new String[1];
+                    Log.d("Demo","Id of receiver is " + ruid + "Id of the sender is " + senderUid);
+                    String B = "disabled";
+
+                     DatabaseReference senderUsername = FirebaseDatabase.getInstance().getReference().child("Gamers").child(senderUid);
+                    senderUsername.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                             senderUname = snapshot.child("username").getValue().toString().trim();
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                    RequestDataHolder ob = new RequestDataHolder(B,ruid,recieverUsername,senderUid,senderUname);
+                    DatabaseReference myRef;
+                    myRef = FirebaseDatabase.getInstance().getReference().child("Requests");
+                    myRef.child(ruid).setValue(ob);
+                    Toast.makeText(v.getContext(), "Request Sent", Toast.LENGTH_SHORT).show();
+                    senderUname = "";
+                }
+            }
+
+        });
     }
+
 
     @NonNull
     @Override
@@ -54,37 +101,15 @@ public class adapter extends FirebaseRecyclerAdapter<model,adapter.myviewholder>
     public class myviewholder extends RecyclerView.ViewHolder
     {
         TextView unamesrd;
-        Button request;
         TextView recieverUid;
+        Button request;
 
 
         public myviewholder(@NonNull View itemView) {
             super(itemView);
             unamesrd=itemView.findViewById(R.id.unamesrd);
-            recieverUid=(TextView) itemView.findViewById(R.id.current_uid);
+            recieverUid=itemView.findViewById(R.id.current_uid);
             request=itemView.findViewById(R.id.request);
-
-            ruid = recieverUid.getText().toString();
-
-            request.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-
-                public void onClick(View v) {
-
-                    if(senderUid.equals(ruid))
-                    {
-                        Toast.makeText(v.getContext(), "You cannot send play request to yourself",Toast.LENGTH_SHORT).show();
-                        Log.d("Demo","Id of receiver is " + ruid + "Id of the sender is " + senderUid);
-                    }
-                    else
-                    {
-                        Toast.makeText(v.getContext(), "You can send request",Toast.LENGTH_SHORT).show();
-                        Log.d("Demo","Id of receiver is " + ruid + "Id of the sender is " + senderUid);
-                    }
-                }
-
-            });
         }
     }
 }

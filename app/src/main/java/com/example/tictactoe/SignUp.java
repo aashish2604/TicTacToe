@@ -18,7 +18,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class SignUp extends AppCompatActivity {
+public class
+SignUp extends AppCompatActivity {
     private EditText username;
     private EditText email;
     private EditText password;
@@ -51,6 +52,7 @@ public class SignUp extends AppCompatActivity {
                                     String em= email.getText().toString().trim();
                                 String uid = FirebaseAuth.getInstance().getUid();
                                 //For creating a unique user id for the registered users
+
                                     dataholder obj= new dataholder(uname,em,uid);
                                 DatabaseReference myRef;
                                 myRef = FirebaseDatabase.getInstance().getReference().child("Gamers");
