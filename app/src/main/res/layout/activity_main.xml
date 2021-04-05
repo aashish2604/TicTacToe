@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".MainActivity">
 
     <TextView
@@ -12,6 +13,7 @@
         android:layout_height="35dp"
         android:text="E-mail ID"
         android:textSize="20sp"
+        android:textColor="@android:color/holo_orange_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.051"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -21,9 +23,11 @@
 
     <EditText
         android:id="@+id/euid"
+        android:textColor="@color/white"
         android:layout_width="267dp"
         android:layout_height="48dp"
         android:ems="10"
+        android:backgroundTint="@color/white"
         android:inputType="textPersonName"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -36,6 +40,7 @@
     <TextView
         android:id="@+id/pass"
         android:layout_width="100dp"
+        android:textColor="@android:color/holo_orange_light"
         android:layout_height="35dp"
         android:text="Paasword"
         android:textSize="20sp"
@@ -52,6 +57,7 @@
         android:layout_height="40dp"
         android:background="#FFFFFF"
         android:text="Login"
+        android:textColor="@color/black"
         app:backgroundTint="@android:color/holo_orange_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -65,6 +71,8 @@
         android:layout_height="48dp"
         android:layout_marginTop="24dp"
         android:ems="10"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/white"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -78,6 +86,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New User?"
+        android:textColor="@android:color/holo_orange_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.802"
@@ -90,7 +99,7 @@
         android:layout_width="52dp"
         android:layout_height="18dp"
         android:text=" Sign up"
-        android:textColor="@color/purple_700"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -100,10 +109,11 @@
 
     <TextView
         android:id="@+id/emsg"
-        android:layout_width="160dp"
+        android:layout_width="300dp"
         android:layout_height="16dp"
-        android:text="Password is incorrect !"
-        android:textColor="#F60505"
+        android:text="Invalid Email ID or Password !"
+        android:textAlignment="center"
+        android:textColor="#F63C3C"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

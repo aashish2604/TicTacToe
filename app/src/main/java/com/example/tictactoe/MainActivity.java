@@ -1,21 +1,19 @@
 package com.example.tictactoe;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseError;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -60,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     private void validate(String uid,String pass){
-        progressDialog.setMessage("Take a breath !");
+        progressDialog.setMessage("Logging in");
         progressDialog.show();
         message.setVisibility(View.INVISIBLE);
         firebaseAuth.signInWithEmailAndPassword(uid,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {

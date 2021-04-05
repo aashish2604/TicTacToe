@@ -55,14 +55,14 @@ public class Game extends AppCompatActivity {
         if(gameState==1){
             if(activePlayer ==1){
                 //Player 1 gets the first call and gets the symbol X
-                selectImage.setImageResource(R.drawable.X1);
+                selectImage.setImageResource(R.drawable.x);
                 player1.add(selectedBlock);
                 activePlayer=2;
                 counter++;
             }
             else if(gameState ==2){
                 //Player 2 gets  the second call and gets the symbol O
-                selectImage.setImageResource(R.drawable.O);
+                selectImage.setImageResource(R.drawable.o);
                 player2.add(selectedBlock);
                 activePlayer=1;
                 counter++;

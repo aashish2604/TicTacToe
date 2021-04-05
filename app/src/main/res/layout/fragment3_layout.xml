@@ -15,6 +15,7 @@
         android:clickable="true"
         android:contentDescription="@string/tab_text_1"
         android:focusable="true"
+        android:backgroundTint="@android:color/holo_orange_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_input_add" />
