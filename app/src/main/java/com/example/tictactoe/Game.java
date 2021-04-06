@@ -15,6 +15,9 @@ public class Game extends AppCompatActivity {
     int gameState;
     int counter = 0;
 
+    //Player 1 is the sender of request
+    //Player 2 is the receiver of the request
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +26,7 @@ public class Game extends AppCompatActivity {
         /* gameState = 1 :- game is playable
            gameState = 2 :- game is won by someone
            gameState = 3 :- game is draw */
+
         gameState = 1;
     }
 
@@ -60,9 +64,9 @@ public class Game extends AppCompatActivity {
                 activePlayer=2;
                 counter++;
             }
-            else if(gameState ==2){
+            else if(activePlayer ==2){
                 //Player 2 gets  the second call and gets the symbol O
-                selectImage.setImageResource(R.drawable.o);
+                selectImage.setImageResource(R.drawable.goldeno);
                 player2.add(selectedBlock);
                 activePlayer=1;
                 counter++;

@@ -55,7 +55,7 @@ public class AdapterFrag3 extends FirebaseRecyclerAdapter<Frag3Module,AdapterFra
         public myviewholder(@NonNull View itemView) {
             super(itemView);
 
-            post_user_name = itemView.findViewById(R.id.post_user_name);
+            post_user_name = itemView.findViewById(R.id.sender_user_name);
             post_date = itemView.findViewById(R.id.post_date);
             post_time = itemView.findViewById(R.id.post_time);
             post_description = itemView.findViewById(R.id.post_description);

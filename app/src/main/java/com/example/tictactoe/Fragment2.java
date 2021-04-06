@@ -23,7 +23,7 @@ public class Fragment2 extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment2_layout,container, false);
-        recview =(RecyclerView)view.findViewById(R.id.recview);
+        recview =(RecyclerView)view.findViewById(R.id.request_list);
         recview.setLayoutManager(new LinearLayoutManager(getContext()));
         FirebaseRecyclerOptions<model> options =
                 new FirebaseRecyclerOptions.Builder<model>()

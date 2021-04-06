@@ -28,7 +28,6 @@ public class adapter extends FirebaseRecyclerAdapter<model,adapter.myviewholder>
     private String senderUid;
     private String senderUname;
 
-
     /**
      * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
      * {@link FirebaseRecyclerOptions} for configuration options.
@@ -60,7 +59,6 @@ public class adapter extends FirebaseRecyclerAdapter<model,adapter.myviewholder>
                 }
                 else
                 {
-                    final String[] buttonState = new String[1];
                     Log.d("Demo","Id of receiver is " + ruid + "Id of the sender is " + senderUid);
                     String B = "disabled";
 
@@ -113,5 +111,3 @@ public class adapter extends FirebaseRecyclerAdapter<model,adapter.myviewholder>
         }
     }
 }
-/* After clicking the button adjacent to the name of a particular registered users.
- I should be getting the uid of that particular user in the ruid but i am getting "TextViewId" instead of it */
