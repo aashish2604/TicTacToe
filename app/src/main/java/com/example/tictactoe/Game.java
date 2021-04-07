@@ -1,12 +1,21 @@
 package com.example.tictactoe;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -14,6 +23,9 @@ public class Game extends AppCompatActivity {
 
     int gameState;
     int counter = 0;
+    String currentuid;
+    String player1_name;
+    String player2_name;
 
     //Player 1 is the sender of request
     //Player 2 is the receiver of the request
@@ -23,11 +35,33 @@ public class Game extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+
         /* gameState = 1 :- game is playable
            gameState = 2 :- game is won by someone
            gameState = 3 :- game is draw */
 
         gameState = 1;
+        currentuid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference players = FirebaseDatabase.getInstance().getReference().child("Requests").child(currentuid);
+        players.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                player1_name = snapshot.child("senderUsername").getValue().toString().trim();
+                player2_name = snapshot.child("recieverUsername").getValue().toString().trim();
+                TextView player_1 = findViewById(R.id.player_1_name);
+                TextView player_2 = findViewById(R.id.player_2_name);
+                player_1.setText(player1_name);
+                player_2.setText(player2_name);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
     }
 
     public void GameBoardClick(View view){
@@ -117,14 +151,31 @@ public class Game extends AppCompatActivity {
             else if(winner == 2)
                 w2.setVisibility(View.VISIBLE);
             gameState = 2;
+
+
+
             exit.setClickable(true);
             exit.setVisibility(View.VISIBLE);
+            exit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(Game.this,Fragment1.class));
+                }
+            });
 
         }
         else if(winner == 0 && counter == 9)
         {
             w3.setVisibility(View.VISIBLE);
             gameState =3;
+            exit.setClickable(true);
+            exit.setVisibility(View.VISIBLE);
+            exit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(Game.this,Fragment1.class));
+                }
+            });
         }
     }
 }

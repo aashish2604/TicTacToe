@@ -67,6 +67,13 @@ public class adapter extends FirebaseRecyclerAdapter<model,adapter.myviewholder>
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                              senderUname = snapshot.child("username").getValue().toString().trim();
+                            RequestDataHolder ob = new RequestDataHolder(B,ruid,recieverUsername,senderUid,senderUname);
+                            DatabaseReference myRef;
+                            myRef = FirebaseDatabase.getInstance().getReference().child("Requests");
+                            myRef.child(ruid).setValue(ob);
+                            Toast.makeText(v.getContext(), "Request Sent", Toast.LENGTH_SHORT).show();
+                            senderUname = "";
+
                         }
 
                         @Override
@@ -74,12 +81,7 @@ public class adapter extends FirebaseRecyclerAdapter<model,adapter.myviewholder>
 
                         }
                     });
-                    RequestDataHolder ob = new RequestDataHolder(B,ruid,recieverUsername,senderUid,senderUname);
-                    DatabaseReference myRef;
-                    myRef = FirebaseDatabase.getInstance().getReference().child("Requests");
-                    myRef.child(ruid).setValue(ob);
-                    Toast.makeText(v.getContext(), "Request Sent", Toast.LENGTH_SHORT).show();
-                    senderUname = "";
+
                 }
             }
 

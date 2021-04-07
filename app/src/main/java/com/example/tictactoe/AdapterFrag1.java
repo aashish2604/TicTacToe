@@ -70,11 +70,6 @@ public class AdapterFrag1 extends FirebaseRecyclerAdapter<ModelFrag1,AdapterFrag
 
                     v.getContext().startActivity(new Intent(v.getContext(),Game.class));
 
-
-                    DatabaseReference myRef;
-                    myRef = FirebaseDatabase.getInstance().getReference().child("Requests");
-                    myRef.child(currentUid).getRef().removeValue();
-
                 }
             });
 

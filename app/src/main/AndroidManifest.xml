@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TicTacToe">
-        <activity android:name=".Game"></activity>
+        <activity android:name=".OnlineGame"></activity>
+        <activity android:name=".Game" />
         <activity android:name=".SetupActivity" />
         <activity android:name=".NewBlogPost" />
         <activity

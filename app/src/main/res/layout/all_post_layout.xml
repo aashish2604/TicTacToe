@@ -71,7 +71,7 @@
                         android:id="@+id/post_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Time"
+                        android:text="   Time"
                         android:textColor="@android:color/white"
                         android:textSize="13sp"
                         />
