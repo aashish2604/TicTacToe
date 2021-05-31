@@ -6,4 +6,9 @@
     <string name="tab_text_1">Requests</string>
     <string name="tab_text_2">Users</string>
     <string name="tab_text_3">Blogs</string>
+    <!--to toggle the open close button
+        of the navigation drawer-->
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
+
 </resources>

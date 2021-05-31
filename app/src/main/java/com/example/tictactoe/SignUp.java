@@ -59,7 +59,7 @@ SignUp extends AppCompatActivity {
                                 myRef.child(uid).setValue(obj);
                                     username.setText("");
                                     email.setText("");
-                                Intent setupIntent= new Intent(SignUp.this,MainScreen.class);
+                                Intent setupIntent= new Intent(SignUp.this,SetupActivity.class);
                                 startActivity(setupIntent);
                             }
                             else

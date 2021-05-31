@@ -209,8 +209,8 @@
 
     <TextView
         android:id="@+id/player_1_name"
-        android:layout_width="151dp"
-        android:layout_height="65dp"
+        android:layout_width="152dp"
+        android:layout_height="56dp"
         android:text="Player 1 name"
         android:textColor="@color/white"
         android:textSize="20dp"
@@ -223,8 +223,8 @@
 
     <TextView
         android:id="@+id/player_2_name"
-        android:layout_width="189dp"
-        android:layout_height="65dp"
+        android:layout_width="187dp"
+        android:layout_height="57dp"
         android:text="Player 2 name"
         android:textAlignment="textEnd"
         android:textColor="@color/white"
@@ -235,6 +235,37 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.092" />
+
+    <TextView
+        android:id="@+id/player_1_turn"
+        android:layout_width="169dp"
+        android:layout_height="35dp"
+        android:text="Your Turn"
+        android:textColor="#FF0000"
+        android:textSize="20dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/game_table"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.066"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player_1_name"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/player_2_turn"
+        android:layout_width="169dp"
+        android:layout_height="35dp"
+        android:text="Your Turn"
+        android:textAlignment="viewEnd"
+        android:textColor="#FF0000"
+        android:textSize="20dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/game_table"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.933"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player_2_name"
+        app:layout_constraintVertical_bias="0.05" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

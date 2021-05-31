@@ -28,7 +28,7 @@
         android:layout_height="260dp"
         android:layout_marginBottom="104dp"
         android:src="@drawable/defaultprofpic"
-        app:layout_constraintBottom_toTopOf="@+id/upload_profile_image"
+        app:layout_constraintBottom_toTopOf="@+id/upload_image_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +36,7 @@
         app:layout_constraintVertical_bias="0.549" />
 
     <Button
-        android:id="@+id/upload_profile_image"
+        android:id="@+id/upload_image_button"
         android:layout_width="166dp"
         android:layout_height="61dp"
         android:text="upload"
@@ -58,5 +58,16 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <Button
+        android:id="@+id/skip_upload_button"
+        android:layout_width="115dp"
+        android:layout_height="55dp"
+        android:text="skip"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/upload_image_button"
+        app:layout_constraintVertical_bias="0.094" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
