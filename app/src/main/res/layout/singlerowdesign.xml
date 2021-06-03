@@ -47,8 +47,7 @@
             android:layout_marginTop="13dp"
             android:layout_marginEnd="3dp"
             android:layout_marginBottom="11dp"
-            android:text="Request"
-            app:backgroundTint="#0927E8" />
+            android:text="Request" />
 
         <TextView
             android:id="@+id/current_uid"

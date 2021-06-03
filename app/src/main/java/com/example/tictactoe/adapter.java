@@ -1,5 +1,6 @@
 package com.example.tictactoe;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -73,6 +74,11 @@ public class adapter extends FirebaseRecyclerAdapter<model,adapter.myviewholder>
                             myRef.child(ruid).setValue(ob);
                             Toast.makeText(v.getContext(), "Request Sent", Toast.LENGTH_SHORT).show();
                             senderUname = "";
+
+                            Intent intent = new Intent(v.getContext(),OnlineGame.class);
+                            intent.putExtra("recieverUid",ruid);
+                            v.getContext().startActivity(intent);
+                            v.getContext().startActivity(new Intent(v.getContext(),OnlineGame.class));
 
                         }
 

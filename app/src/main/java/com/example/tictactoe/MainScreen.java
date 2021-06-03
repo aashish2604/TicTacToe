@@ -1,5 +1,6 @@
 package com.example.tictactoe;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -55,8 +56,8 @@ public class MainScreen extends AppCompatActivity {
                         break;
 
                     case R.id.nav_logout :
-                        Toast.makeText(getApplicationContext(),"Logout username is selected",Toast.LENGTH_SHORT).show();
                         drawerLayout.closeDrawer(GravityCompat.START);
+                        startActivity(new Intent(MainScreen.this,MainActivity.class));
                         break;
 
                 }

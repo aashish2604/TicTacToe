@@ -65,8 +65,9 @@ public class AdapterFrag1 extends FirebaseRecyclerAdapter<ModelFrag1,AdapterFrag
                 @Override
                 public void onClick(View v) {
                     //starting the tic tac toe game
-
-
+                    Intent intent = new Intent(v.getContext(),OnlineGame.class);
+                    intent.putExtra("recieverUid",currentUid);
+                    v.getContext().startActivity(intent);
 
                     v.getContext().startActivity(new Intent(v.getContext(),Game.class));
 
@@ -74,17 +75,23 @@ public class AdapterFrag1 extends FirebaseRecyclerAdapter<ModelFrag1,AdapterFrag
             });
 
         }
+        else{
+
+            //Code to remove unwanted segments in the lists
+
+            holder.itemView.setVisibility(View.GONE);
+            ViewGroup.LayoutParams params = holder.itemView.getLayoutParams();
+            params.height = 0;
+            holder.itemView.setLayoutParams(params);
+        }
 
     }
 
     @NonNull
     @Override
     public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.all_requests_layout, parent, false);
             return new myviewholder(view);
-
-
     }
 
 

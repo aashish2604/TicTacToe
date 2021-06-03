@@ -24,9 +24,12 @@ public class OnlineGame extends AppCompatActivity {
     int selectedBlock = 0;
     int counter = 0;
     String status;
+    String sign = "X";
 
     String currentuid;
     String turn;
+
+    String confirm;
 
     TextView player_1_chance;
     TextView player_2_chance;
@@ -35,6 +38,7 @@ public class OnlineGame extends AppCompatActivity {
 
     String player1_name,player_1_uid;
     String player2_name,player_2_uid;
+
     //chance = 1 for player 1
     //chance = 2 for player 2
 
@@ -46,8 +50,11 @@ public class OnlineGame extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_online_game);
 
+        Intent intent = getIntent();
+        String uid = intent.getStringExtra("recieverUid");
+
         currentuid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DatabaseReference players = FirebaseDatabase.getInstance().getReference().child("Requests").child(currentuid);
+        DatabaseReference players = FirebaseDatabase.getInstance().getReference().child("Requests").child(uid);
         players.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -89,7 +96,7 @@ public class OnlineGame extends AppCompatActivity {
         ImageView selectImage = (ImageView) view;
 
         switch (selectImage.getId()){
-            case R.id.iv_11: selectedBlock = 1; break;
+            case R.id.iv_11: selectedBlock = 1; gamePlay.child("iv_11").setValue(sign); break;
             case R.id.iv_12: selectedBlock = 2; break;
             case R.id.iv_13: selectedBlock = 3; break;
 
